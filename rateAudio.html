@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+
+  <style>
+  #toolbar {
+    padding: 4px;
+    display: inline-block;
+  }
+  /* support: IE7 */
+  *+html #toolbar {
+    display: inline;
+  }
+  </style>
+  <script>
+  $(function() {
+    $( "#play" ).button({
+      text: false,
+      icons: {
+        primary: "ui-icon-play"
+      }
+    })
+    .click(function() {
+      var options;
+      if ( $( this ).text() === "play" ) {
+        options = {
+          label: "pause",
+          icons: {
+            primary: "ui-icon-pause"
+          }
+        };
+      } else {
+        options = {
+          label: "play",
+          icons: {
+            primary: "ui-icon-play"
+          }
+        };
+      }
+      $( this ).button( "option", options );
+    });
+    $( "#stop" ).button({
+      text: false,
+      icons: {
+        primary: "ui-icon-stop"
+      }
+    })
+    .click(function() {
+      $( "#play" ).button( "option", {
+        label: "play",
+        icons: {
+          primary: "ui-icon-play"
+        }
+      });
+    });
+  });
+  </script>
+  
+  
+<script>
+function greeter(sliderVals) {
+alert(sliderVals.toString());
+return(sliderVals)
+}
+</script>
+</head>
+
+<body>
+
+<p>You are about to hear some speech. Show your understanding of the speech with the slider below. If you find the speech very EASY to understand, move the slider to the RIGHT. If you find the speech very HARD to understand, move the slider to the LEFT.</p>
+
+<p>Click the <button id="play"> play </button> button to begin.</p>
+
+<div id="toolbar" class="ui-widget-header ui-corner-all">
+  <button id="play">play</button> 
+</div>
+
+
+<audio controls>
+  <source src="http://dp0169.free.fr/Musique/Air/Air%20-%20Talkie%20Walkie/02%20Cherry%20Blossom%20Girl.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+
+<table width="100%" border="0">
+  <tr>
+<td>
+  <div style="float:left;width:50%;">HARD to understand</div>
+  <div style="float:right;text-align:right;width:50%;">EASY to understand</div>
+</td>
+</tr>
+<tr><td>
+<div id="slider"></div>
+</td></tr>
+<tr><td>
+<div id="ratingResult"></div>
+</td></tr>
+</table>
+
+
+
+<script type = "text/javascript">
+  $( "#slider" ).slider({
+    value: 50,
+    min: 0,
+    max: 100,
+    //this gets a live reading of the value and prints it on the page
+    slide: function( event, ui ) {
+    $( "#ratingResult" ).text( ui.value );
+    var sliderVals=[];
+   },
+//this updates the value of your hidden field when user stops dragging
+  change: function(event, ui) { 
+     $('#rateToPost').attr('value', ui.value);
+     sliderVals.push(ui.value);
+   } });
+
+
+var dummy;
+var sliderVals=[];
+
+dummy = setInterval(function(){greeter([sliderVals])},10000);
+setTimeout(function(){clearInterval(dummy)},21000);
+//make it stop
+//print array contents to file
+
+</script>
+
+<script>
+    $(document).ready(function() {
+        var audioElement = document.createElement('audio');
+        audioElement.setAttribute('src', 'http://dp0169.free.fr/Musique/Air/Air%20-%20Talkie%20Walkie/02%20Cherry%20Blossom%20Girl.mp3');
+        //audioElement.load()
+
+        $.get('audio', '.play');
+
+        audioElement.addEventListener("load", function() {
+            audioElement.Play();
+        }, true);
+
+        $('.play').click(function() {
+            audioElement.Play();
+        });
+
+        $('.pause').click(function() {
+            audioElement.Stop;
+        });
+
+// when audio is done playing, display slidervals
+
+</body>
+</html>
