@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div id="timer_div"></div>
+<script language="javascript" type="text/javascript">
+var seconds_left = 10;
+var interval = setInterval(function() {
+    document.getElementById('timer_div').innerHTML = --seconds_left;
+
+    if (seconds_left <= 0)
+    {
+        window.open('http://www.cnn.com',_self)
+        clearInterval(interval);
+    }
+}, 1000);//-->
+</script>
+</body>
+</html> 
