@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="/stylesheets.css">
+    <!--
+    Not sure if this is a mistake or just wasn't copied over...leaving as a reminder for now
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    -->
+  </head>
+  <body>
+
+
+<p> Now think back to the FIRST conversation you listened to. Now rate how well you understood the ENTIRE conversation. Move the slider to provide your overall rating. </p>
+
+
+<!-- Set up slider in full screenwidth table -->
+    <table width="100%" border="0">
+      <tr>
+        <td>
+          <div style="float:left;width:50%;">HARD to understand</div>
+          <div style="float:right;text-align:right;width:50%;">EASY to understand</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="slider"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="ratingResult"></div>
+        </td>
+      </tr>
+    </table>
+
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+
+    <script type = "text/javascript">
+ 
+ // Only the final slider position is needed here.
+
+      $( "#slider" ).slider({
+        value: 50,
+        min: 0,
+        max: 100,
+
+        //this gets a live reading of the value and prints it on the page
+        slide: function( event, ui ) {
+          $( "#ratingResult" ).text( ui.value );
+          var sliderVals=[];
+        },
+
+        //this updates the value of your hidden field when user stops dragging
+        change: function(event, ui) {
+           $('#rateToPost').attr('value', ui.value);
+           sliderVals.push(ui.value);
+         }
+       });
+
+       var sliderVals=[];
+
+//      Check on recorded slider values-- no longer in use: 3/1/2014
+//      var dummy;
+//      dummy = setInterval(function(){greeter([sliderVals])},10000);
+//      setTimeout(function(){clearInterval(dummy)},21000);
+
+    </script>
+
+
+</body>
+</html>

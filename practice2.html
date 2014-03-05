@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="/stylesheets.css">
+    <!--
+    Not sure if this is a mistake or just wasn't copied over...leaving as a reminder for now
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    -->
+  </head>
+  <body>
+
+<!-- Practice page 2 -->
+<!-- Instruct users that payment is contingent on paying attention -->
+   <p>  Most of the sounds will have no right or wrong answer. </p>
+
+      <p>But a few sounds will start out VERY EASY to understand and become VERY HARD, or start out VERY HARD to understand and become VERY EASY. If you are listening, you will not miss it. Your ratings must change when this happens in order for you to get paid.</p>
+    
+    <p> To understand what we mean, listen to this sound. Be sure to move your slider when your ability to understand the sound changes. </p>
+
+<!-- Set up slider in full screenwidth table -->
+    <table width="100%" border="0">
+      <tr>
+        <td>
+          <div style="float:left;width:50%;">HARD to understand</div>
+          <div style="float:right;text-align:right;width:50%;">EASY to understand</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="slider"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="ratingResult"></div>
+        </td>
+      </tr>
+    </table>
+
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <script type = "text/javascript">
+
+    // Surely this script can live elsewhere?
+
+      $( "#slider" ).slider({
+        value: 50,
+        min: 0,
+        max: 100,
+
+        //this gets a live reading of the value and prints it on the page
+        slide: function( event, ui ) {
+          $( "#ratingResult" ).text( ui.value );
+          var sliderVals=[];
+        },
+
+        //this updates the value of your hidden field when user stops dragging
+        change: function(event, ui) {
+           $('#rateToPost').attr('value', ui.value);
+           sliderVals.push(ui.value);
+         }
+       });
+
+       var sliderVals=[];
+
+//      Check on recorded slider values-- no longer in use: 3/1/2014
+//      var dummy;
+//      dummy = setInterval(function(){greeter([sliderVals])},10000);
+//      setTimeout(function(){clearInterval(dummy)},21000);
+
+    </script>
+
+    <script>
+
+// This script I thought would link the audio file to the button. It doesn't, currently.
+// Also, the script should not be in this file.
+
+        $(document).ready(function() {
+          var audioElement = document.createElement('audio');
+
+          audioElement.setAttribute('src', 'http://dp0169.free.fr/Musique/Air/Air%20-%20Talkie%20Walkie/02%20Cherry%20Blossom%20Girl.mp3');
+          //audioElement.load()
+
+          $.get('audio', '.play');
+
+          audioElement.addEventListener("load", function() {
+              audioElement.Play();
+          }, true);
+
+          $('.play').click(function() {
+              audioElement.Play();
+          });
+
+          $('.pause').click(function() {
+              audioElement.Stop;
+          });
+
+          // when audio is done playing, display slidervals
+        });
+    </script>
+
+</body>
+</html>

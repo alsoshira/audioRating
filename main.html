@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="/stylesheets.css">
+    <!--
+    Not sure if this is a mistake or just wasn't copied over...leaving as a reminder for now
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    -->
+  </head>
+  <body>
+
+<!-- Select random sound file from list of 2 sounds -->
+<!-- file[round(Math.random())]; 
+	if 0, play 1st file, then 2nd file
+  	if 1, play 2nd file, then 1st file
+-->
+
+<p> You will be listening to THREE conversations today. </p>
+
+<p>   Rate your understanding of the conversations with the slider below. If you find the speech very EASY to understand,
+      move the slider to the RIGHT. If you find the speech very HARD to understand, move the slider to the LEFT. </p>
+
+
+<!-- allow user-initiated play -->
+
+<!-- Method 1: HTML5 audio control -->
+<!--    <audio controls>
+      <source src="http://dp0169.free.fr/Musique/Air/Air%20-%20Talkie%20Walkie/02%20Cherry%20Blossom%20Girl.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+-->
+
+<!-- Method 2: Toolbar -->
+<!--
+    <div id="toolbar" class="ui-widget-header ui-corner-all">
+      <button id="play">play</button>
+    </div>
+-->
+
+<!-- Method 3: Standalone button linked to file -->
+    <p>
+      Click the <button id="play"> play </button> button to begin.
+    </p>
+
+
+<!-- Set up slider in full screenwidth table -->
+    <table width="100%" border="0">
+      <tr>
+        <td>
+          <div style="float:left;width:50%;">HARD to understand</div>
+          <div style="float:right;text-align:right;width:50%;">EASY to understand</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="slider"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="ratingResult"></div>
+        </td>
+      </tr>
+    </table>
+
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <script type = "text/javascript">
+      $( "#slider" ).slider({
+        value: 50,
+        min: 0,
+        max: 100,
+
+        //this gets a live reading of the value and prints it on the page
+        slide: function( event, ui ) {
+          $( "#ratingResult" ).text( ui.value );
+          var sliderVals=[];
+        },
+
+        //this updates the value of your hidden field when user stops dragging
+        change: function(event, ui) {
+           $('#rateToPost').attr('value', ui.value);
+           sliderVals.push(ui.value);
+         }
+       });
+
+       var sliderVals=[];
+
+//      Check on recorded slider values-- no longer in use: 3/1/2014
+//      var dummy;
+//      dummy = setInterval(function(){greeter([sliderVals])},10000);
+//      setTimeout(function(){clearInterval(dummy)},21000);
+
+    </script>
+
+    <script>
+
+// This script I thought would link the audio file to the button. It doesn't, currently.
+// Also, the script should not be in this file.
+
+        $(document).ready(function() {
+          var audioElement = document.createElement('audio');
+
+          audioElement.setAttribute('src', 'http://dp0169.free.fr/Musique/Air/Air%20-%20Talkie%20Walkie/02%20Cherry%20Blossom%20Girl.mp3');
+          //audioElement.load()
+
+          $.get('audio', '.play');
+
+          audioElement.addEventListener("load", function() {
+              audioElement.Play();
+          }, true);
+
+          $('.play').click(function() {
+              audioElement.Play();
+          });
+
+          $('.pause').click(function() {
+              audioElement.Stop;
+          });
+
+          // when audio is done playing, display slidervals
+        });
+    </script>
+
+
+    <!-- After both sounds are played and rated, display distraction task -->
+
+</body>
+</html>

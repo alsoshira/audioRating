@@ -9,132 +9,62 @@
     -->
   </head>
   <body>
-    <p>
-      You are about to hear some speech. Show your understanding of the speech
-      with the slider below. If you find the speech very EASY to understand,
-      move the slider to the RIGHT. If you find the speech very HARD to
-      understand, move the slider to the LEFT. </p>
-
-<!-- 
-  Allow one practice round. Sound should be very easy to understand. 
--->
-
-<!--
-  Check ratings; ensure that they are greater than 75/100. 
-  If not >75/100, show message saying that they did not follow the instructions, and show the general instructions again.
-  After 3 failures, reject subject.
-  If ratings >75/100, show next set of instructions (below)
--->
-
-<!-- Instruct users that payment is contingent on paying attention -->
-    <p>  Most of the sounds will have no right or wrong answer. </p>
-
-      <p>But a few sounds will start out VERY EASY to understand and become VERY HARD, or start out VERY HARD to understand and become VERY EASY. If you are listening, you will not miss it. Your ratings must change when this happens in order for you to get paid.
-    </p>
-    <p> To understand what we mean, listen to this sound. Be sure to move your slider when your ability to understand the sound changes. </p>
-<!-- 
-  Play practice sound 2. Somehow check to make sure users move slider as expected.
-  If successful, move on to main experiment.
-  If not successful, show message saying that they did not follow instructions, and show attention instructions again.
-  After second failure, reject subject.
--->
 
 
-<!-- Select random sound file from list of 2 sounds -->
+  <script type = "text/javascript">
+ 
+ // Consider removing practice. It confuses the experiment to play extra sounds that may be remembered.
+  
+  for (var attempts = 1; attempts<3; attempts++){
+    //window.open("practice1.html","_self") 
+    // show page with sound instructions; user-initiated play button linked to "easy" practice sound 1; slider.
+    // when sound finishes playing:
+      // return slider values
 
+    if(!isGreater(slidervals,75)) {   //ensure that average rating is >75/100
+  // display message saying "Your performance did not meet the standard needed for this experiment. You have one more chance. Listen carefully."
+    }
+    else {
+    //window.open("practice2.html","_self")      // display practice page 2
+    // break
+   }
+  }
+ 
+ if (attempts > 2) { 
+  //window.open("goodbye.html","_self")
+    // Display: sorry, your performance does not meet the standard needed for this experiment.
+    // Kick participant out of experiment
+  }
 
-    <p>
-      Click the <button id="play"> play </button> button to begin.
-    </p>
+  else {
+    //window.open("main.html","_self") // run experiment
+  }
 
-    <div id="toolbar" class="ui-widget-header ui-corner-all">
-      <button id="play">play</button>
-    </div>
+  isGreater(ratinglist, criterion)
+  {
+    if (mean(ratinglist) > criterion){
+     return TRUE;
+    }
+    else{
+      return FALSE;
+    }
+  }
 
-<!-- allow user-initiated play -->
-    <audio controls>
-      <source src="http://dp0169.free.fr/Musique/Air/Air%20-%20Talkie%20Walkie/02%20Cherry%20Blossom%20Girl.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
+  isLessThan(ratinglist, criterion)
+  {
+    if (mean(ratinglist) < criterion){
+     return TRUE;
+    }
+   else{
+     return FALSE;
+    }
+  }
 
-    <table width="100%" border="0">
-      <tr>
-        <td>
-          <div style="float:left;width:50%;">HARD to understand</div>
-          <div style="float:right;text-align:right;width:50%;">EASY to understand</div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div id="slider"></div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div id="ratingResult"></div>
-        </td>
-      </tr>
-    </table>
+  </script>
 
-    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
-    <script type = "text/javascript">
-      $( "#slider" ).slider({
-        value: 50,
-        min: 0,
-        max: 100,
-
-        //this gets a live reading of the value and prints it on the page
-        slide: function( event, ui ) {
-          $( "#ratingResult" ).text( ui.value );
-          var sliderVals=[];
-        },
-
-        //this updates the value of your hidden field when user stops dragging
-        change: function(event, ui) {
-           $('#rateToPost').attr('value', ui.value);
-           sliderVals.push(ui.value);
-         }
-       });
-
-       var sliderVals=[];
-
-//      Check on recorded slider values-- no longer in use: 3/1/2014
-//      var dummy;
-//      dummy = setInterval(function(){greeter([sliderVals])},10000);
-//      setTimeout(function(){clearInterval(dummy)},21000);
-
-    </script>
-
-    <script>
-        $(document).ready(function() {
-          var audioElement = document.createElement('audio');
-
-          audioElement.setAttribute('src', 'http://dp0169.free.fr/Musique/Air/Air%20-%20Talkie%20Walkie/02%20Cherry%20Blossom%20Girl.mp3');
-          //audioElement.load()
-
-          $.get('audio', '.play');
-
-          audioElement.addEventListener("load", function() {
-              audioElement.Play();
-          }, true);
-
-          $('.play').click(function() {
-              audioElement.Play();
-          });
-
-          $('.pause').click(function() {
-              audioElement.Stop;
-          });
-
-          // when audio is done playing, display slidervals
-        });
-    </script>
 
 
     <!-- After both sounds are played and rated, display distraction task -->
-
     <!-- After distraction task, display rating memory page 1 -->
     <!-- Then display rating memory page 2 -->
     <!-- Then display preference page -->
