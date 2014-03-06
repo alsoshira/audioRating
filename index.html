@@ -10,65 +10,142 @@
   </head>
   <body>
 
+<!-- Select random sound file from list of 2 sounds -->
+<!-- file[round(Math.random())]; 
+	if 0, play 1st file, then 2nd file
+  	if 1, play 2nd file, then 1st file
+-->
 
-  <script type = "text/javascript">
- 
- // Consider removing practice. It confuses the experiment to play extra sounds that may be remembered.
+<p> You will be listening to THREE conversations today. </p>
+
+<p>   Rate your understanding of the conversations with the slider below. If you find the speech very EASY to understand,
+      move the slider to the RIGHT. If you find the speech very HARD to understand, move the slider to the LEFT. </p>
+
+
+<!-- allow user-initiated play -->
+
+<!-- Method 1: HTML5 audio control -->
+   <audio controls>
+      <source src="http://alt-usage-english.org/archive/arth_mb.mp3" type="audio/mpeg">
+      Your browser can't play audio.
+    </audio>
+
+
+<!-- Method 2: Toolbar -->
+<!--
+    <div id="toolbar" class="ui-widget-header ui-corner-all">
+      <button id="play">play</button>
+    </div>
+-->
+
+<!-- Method 3: Standalone button linked to file -->
+    <p>
+      Click the <button onclick="playSound()" type="button">Play Sound</button> button to begin.
+    </p>
+
+
+<!-- Set up slider in full screenwidth table -->
+    <table width="100%" border="0">
+      <tr>
+        <td>
+          <div style="float:left;width:50%;">HARD to understand</div>
+          <div style="float:right;text-align:right;width:50%;">EASY to understand</div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="slider"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div id="ratingResult"></div>
+        </td>
+      </tr>
+    </table>
+
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    <script type = "text/javascript">
+      $( "#slider" ).slider({
+        value: 50,
+        min: 0,
+        max: 100,
+
+        //this gets a live reading of the value and prints it on the page
+        slide: function( event, ui ) {
+          $( "#ratingResult" ).text( ui.value );
+        },
+
+        //this updates the value of your hidden field when user stops dragging
+        change: function(event, ui) {
+           $('#rateToPost').attr('value', ui.value);
+           sliderVals.push(ui.value);
+         }
+       });
+
+       var sliderVals=[];
+
+//      Check on recorded slider values-- no longer in use: 3/1/2014
+//      var dummy;
+//      dummy = setInterval(function(){greeter([sliderVals])},10000);
+//      setTimeout(function(){clearInterval(dummy)},21000);
+
+    </script>
+
+<audio id="audio1">
+<!--  <source src="media/horse.ogg" type="audio/ogg"> -->
+  <source src="http://alt-usage-english.org/archive/arth_mb.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+<br> 
+
+<script> 
+var mySound=document.getElementById("audio1"); 
   
-  for (var attempts = 1; attempts<3; attempts++){
-    //window.open("practice1.html","_self") 
-    // show page with sound instructions; user-initiated play button linked to "easy" practice sound 1; slider.
-    // when sound finishes playing:
-      // return slider values
+mySound.addEventListener("ended",function() {
+        window.location.assign("distractor.html")
+    });
 
-    if(!isGreater(slidervals,75)) {   //ensure that average rating is >75/100
-  // display message saying "Your performance did not meet the standard needed for this experiment. You have one more chance. Listen carefully."
-    }
-    else {
-    //window.open("practice2.html","_self")      // display practice page 2
-    // break
-   }
-  }
- 
- if (attempts > 2) { 
-  //window.open("goodbye.html","_self")
-    // Display: sorry, your performance does not meet the standard needed for this experiment.
-    // Kick participant out of experiment
-  }
+function playSound()
+  { 
+  mySound.play(); 
+  } 
+</script> 
 
-  else {
-    //window.open("main.html","_self") // run experiment
-  }
+<!--
+    <script>
 
-  isGreater(ratinglist, criterion)
-  {
-    if (mean(ratinglist) > criterion){
-     return TRUE;
-    }
-    else{
-      return FALSE;
-    }
-  }
+// This script I thought would link the audio file to the button. It doesn't, currently.
+// Also, the script should not be in this file.
 
-  isLessThan(ratinglist, criterion)
-  {
-    if (mean(ratinglist) < criterion){
-     return TRUE;
-    }
-   else{
-     return FALSE;
-    }
-  }
+        $(document).ready(function() {
+          var audioElement = document.createElement('audio');
 
-  </script>
+          audioElement.setAttribute('src', 'http://alt-usage-english.org/archive/arth_mb.mp3');
+          //audioElement.load()
 
+          $.get('audio', '.Play()');
 
+          audioElement.addEventListener("load", function() {
+              audioElement.Play();
+          }, true);
+
+          $('.play').click(function() {
+              audioElement.Play();
+          });
+
+          $('.pause').click(function() {
+              audioElement.Stop;
+          });
+
+          // when audio is done playing, display slidervals
+        });
+    </script>
+-->
 
     <!-- After both sounds are played and rated, display distraction task -->
-    <!-- After distraction task, display rating memory page 1 -->
-    <!-- Then display rating memory page 2 -->
-    <!-- Then display preference page -->
-    <!-- Then display thank you page -->
 
-  </body>
+</body>
 </html>

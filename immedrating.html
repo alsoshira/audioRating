@@ -94,6 +94,27 @@
 
     </script>
 
+<audio id="audio1">
+<!--  <source src="media/horse.ogg" type="audio/ogg"> -->
+  <source src="http://alt-usage-english.org/archive/arth_mb.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+<br> 
+
+<script> 
+var mySound=document.getElementById("audio1"); 
+  
+mySound.addEventListener("ended",function() {
+        window.location.assign("thanks.html")
+    });
+
+function playSound()
+  { 
+  mySound.play(); 
+  } 
+</script> 
+
+<!--
     <script>
 
 // This script I thought would link the audio file to the button. It doesn't, currently.
@@ -122,7 +143,7 @@
           // when audio is done playing, display slidervals
         });
     </script>
-
+-->
 
     <!-- After both sounds are played and rated, display distraction task -->
 

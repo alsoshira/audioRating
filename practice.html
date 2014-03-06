@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="/stylesheets.css">
+    <!--
+    Not sure if this is a mistake or just wasn't copied over...leaving as a reminder for now
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    -->
+  </head>
+  <body>
+
+
+  <script type = "text/javascript">
+ 
+ // Consider removing practice. It confuses the experiment to play extra sounds that may be remembered.
+  
+  for (var attempts = 1; attempts<3; attempts++){
+    //window.open("practice1.html","_self") 
+    // show page with sound instructions; user-initiated play button linked to "easy" practice sound 1; slider.
+    // when sound finishes playing:
+      // return slider values
+
+    if(!isGreater(slidervals,75)) {   //ensure that average rating is >75/100
+  // display message saying "Your performance did not meet the standard needed for this experiment. You have one more chance. Listen carefully."
+    }
+    else {
+    //window.open("practice2.html","_self")      // display practice page 2
+    // break
+   }
+  }
+ 
+ if (attempts > 2) { 
+  //window.open("goodbye.html","_self")
+    // Display: sorry, your performance does not meet the standard needed for this experiment.
+    // Kick participant out of experiment
+  }
+
+  else {
+    //window.open("main.html","_self") // run experiment
+  }
+
+  isGreater(ratinglist, criterion)
+  {
+    if (mean(ratinglist) > criterion){
+     return TRUE;
+    }
+    else{
+      return FALSE;
+    }
+  }
+
+  isLessThan(ratinglist, criterion)
+  {
+    if (mean(ratinglist) < criterion){
+     return TRUE;
+    }
+   else{
+     return FALSE;
+    }
+  }
+
+  </script>
+
+
+
+    <!-- After both sounds are played and rated, display distraction task -->
+    <!-- After distraction task, display rating memory page 1 -->
+    <!-- Then display rating memory page 2 -->
+    <!-- Then display preference page -->
+    <!-- Then display thank you page -->
+
+  </body>
+</html>
