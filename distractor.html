@@ -2,18 +2,23 @@
 <html>
 <body>
 
+<!--
+	Distractor task. Right now, displays a countdown.
+	After countdown, opens memory page.
+-->
+
 <div id="timer_div"></div>
 <script language="javascript" type="text/javascript">
-var seconds_left = 10;
+var countdown_length = 5;
 var interval = setInterval(function() {
-    document.getElementById('timer_div').innerHTML = --seconds_left;
+    document.getElementById('timer_div').innerHTML = --countdown_length;
 
-    if (seconds_left <= 0)
+    if (countdown_length <= 0)
     {
-        window.open('http://www.cnn.com',_self)
+        window.location.href = "memory1.html";
         clearInterval(interval);
     }
-}, 1000);//-->
+}, 1000);
 </script>
 </body>
 </html> 
