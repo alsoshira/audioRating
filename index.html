@@ -1,71 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Audio Rating</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="/stylesheets.css">
-    <!--
-    Not sure if this is a mistake or just wasn't copied over...leaving as a reminder for now
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
   <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-16">
 
-<!-- Select random sound file from list of 2 sounds -->
-<!-- file[round(Math.random())]; 
-	if 0, play 1st file, then 2nd file
-  	if 1, play 2nd file, then 1st file
--->
+          <p>You will be listening to THREE conversations today.</p>
 
-<p> You will be listening to THREE conversations today. </p>
+          <p>
+            Rate your understanding of the conversations with the slider below.
+            If you find the speech very EASY to understand, move the slider to
+            the RIGHT. If you find the speech very HARD to understand, move the
+            slider to the LEFT.
+          </p>
 
-<p>   Rate your understanding of the conversations with the slider below. If you find the speech very EASY to understand,
-      move the slider to the RIGHT. If you find the speech very HARD to understand, move the slider to the LEFT. </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-16">
+          <!-- Select random sound file from list of 2 sounds -->
+          <!-- file[round(Math.random())];
+              if 0, play 1st file, then 2nd file
+              if 1, play 2nd file, then 1st file
+          -->
 
 
-<!-- allow user-initiated play -->
+          <!-- allow user-initiated play -->
 
-<!-- Method 1: HTML5 audio control 
-   <audio controls>
-      <source src="http://alt-usage-english.org/archive/arth_mb.mp3" type="audio/mpeg">
-      Your browser can't play audio.
-    </audio>
--->
+          <!-- Method 1: HTML5 audio control
+             <audio controls>
+                <source src="http://alt-usage-english.org/archive/arth_mb.mp3" type="audio/mpeg">
+                Your browser can't play audio.
+              </audio>
+          -->
 
-<!-- Method 2: Toolbar -->
-<!--
-    <div id="toolbar" class="ui-widget-header ui-corner-all">
-      <button id="play">play</button>
+          <!-- Method 2: Toolbar -->
+          <!--
+              <div id="toolbar" class="ui-widget-header ui-corner-all">
+                <button id="play">play</button>
+              </div>
+          -->
+
+          <!-- Method 3: Standalone button linked to file -->
+              <p>
+                Click the <button onclick="playSound()" type="button">Play Sound</button> button to begin.
+              </p>
+
+
+          <!-- Set up slider in full screenwidth table -->
+          <table width="100%" border="0">
+            <tr>
+              <td>
+                <div style="float:left;width:50%;">HARD to understand</div>
+                <div style="float:right;text-align:right;width:50%;">EASY to understand</div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div id="slider"></div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div id="ratingResult"></div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
     </div>
--->
-
-<!-- Method 3: Standalone button linked to file -->
-    <p>
-      Click the <button onclick="playSound()" type="button">Play Sound</button> button to begin.
-    </p>
 
 
-<!-- Set up slider in full screenwidth table -->
-    <table width="100%" border="0">
-      <tr>
-        <td>
-          <div style="float:left;width:50%;">HARD to understand</div>
-          <div style="float:right;text-align:right;width:50%;">EASY to understand</div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div id="slider"></div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div id="ratingResult"></div>
-        </td>
-      </tr>
-    </table>
-
-    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
     <script type = "text/javascript">
       $( "#slider" ).slider({
@@ -95,57 +124,57 @@
     </script>
 
 
-<audio id="audio1">
-  <source src="http://alt-usage-english.org/archive/arth_mb.mp3" type="audio/mpeg">
-Your browser does not have the audio support you need.
-</audio>
-<br> 
+    <audio id="audio1">
+      <source src="media/horse.ogg" type="audio/ogg"> -->
+      <source src="http://alt-usage-english.org/archive/arth_mb.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
+    <br>
 
-<script> 
-var mySound=document.getElementById("audio1"); 
-  
-mySound.addEventListener("ended",function() {
-        window.location.assign("distractor.html")
-    });
-
-function playSound()
-  { 
-  mySound.play(); 
-  } 
-</script> 
-
-<!--
     <script>
+    var mySound=document.getElementById("audio1");
 
-// This script I thought would link the audio file to the button. It doesn't, currently.
-// Also, the script should not be in this file.
-
-        $(document).ready(function() {
-          var audioElement = document.createElement('audio');
-
-          audioElement.setAttribute('src', 'http://alt-usage-english.org/archive/arth_mb.mp3');
-          //audioElement.load()
-
-          $.get('audio', '.Play()');
-
-          audioElement.addEventListener("load", function() {
-              audioElement.Play();
-          }, true);
-
-          $('.play').click(function() {
-              audioElement.Play();
-          });
-
-          $('.pause').click(function() {
-              audioElement.Stop;
-          });
-
-          // when audio is done playing, display slidervals
+    mySound.addEventListener("ended",function() {
+            window.location.assign("distractor.html")
         });
+
+    function playSound()
+      {
+      mySound.play();
+      }
     </script>
--->
+
+    <!--
+        <script>
+
+    // This script I thought would link the audio file to the button. It doesn't, currently.
+    // Also, the script should not be in this file.
+
+            $(document).ready(function() {
+              var audioElement = document.createElement('audio');
+
+              audioElement.setAttribute('src', 'http://alt-usage-english.org/archive/arth_mb.mp3');
+              //audioElement.load()
+
+              $.get('audio', '.Play()');
+
+              audioElement.addEventListener("load", function() {
+                  audioElement.Play();
+              }, true);
+
+              $('.play').click(function() {
+                  audioElement.Play();
+              });
+
+              $('.pause').click(function() {
+                  audioElement.Stop;
+              });
+
+              // when audio is done playing, display slidervals
+            });
+        </script>
+    -->
 
     <!-- After both sounds are played and rated, display distraction task -->
-
-</body>
+  </body>
 </html>
