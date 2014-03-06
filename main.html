@@ -25,11 +25,11 @@
 <!-- allow user-initiated play -->
 
 <!-- Method 1: HTML5 audio control -->
-<!--    <audio controls>
-      <source src="http://dp0169.free.fr/Musique/Air/Air%20-%20Talkie%20Walkie/02%20Cherry%20Blossom%20Girl.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
+   <audio controls>
+      <source src="http://alt-usage-english.org/archive/arth_mb.mp3" type="audio/mpeg">
+      Your browser can't play audio.
     </audio>
--->
+
 
 <!-- Method 2: Toolbar -->
 <!--
@@ -76,7 +76,6 @@
         //this gets a live reading of the value and prints it on the page
         slide: function( event, ui ) {
           $( "#ratingResult" ).text( ui.value );
-          var sliderVals=[];
         },
 
         //this updates the value of your hidden field when user stops dragging
@@ -106,7 +105,7 @@
           audioElement.setAttribute('src', 'http://alt-usage-english.org/archive/arth_mb.mp3');
           //audioElement.load()
 
-          $.get('audio', '.play');
+          $.get('audio', '.Play()');
 
           audioElement.addEventListener("load", function() {
               audioElement.Play();
