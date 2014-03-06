@@ -3,6 +3,9 @@
   <head>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="/stylesheets.css">
+
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <!--
     Not sure if this is a mistake or just wasn't copied over...leaving as a reminder for now
     <link rel="stylesheet" href="/resources/demos/style.css">
@@ -13,17 +16,51 @@
 <!-- Practice page 1 -->
 <!-- General instructions -->
     <p>
-      You are about to hear some speech. Show your understanding of the speech
-      with the slider below. If you find the speech very EASY to understand,
+      You are about to see an image. Show how clearly you can see the image
+      with the slider below. If you find the image very EASY to see,
       move the slider to the RIGHT. If you find the speech very HARD to
-      understand, move the slider to the LEFT. </p>
+      see, move the slider to the LEFT. </p>
 
+<br><br>
+
+
+<center>
+<div id="clickme">
+  Click HERE to begin.
+</div>
+   <img id="okapi" src="okapi.jpg" alt="" style="display:none" width="20%" height="20%">
+</center>
+
+<br><br>
+
+<script type = "text/javascript">
+
+
+  $( "#clickme" ).click(function() {
+  $( "#okapi" ).fadeIn(20000, function() {
+    // Animation complete
+    });
+  });
+
+ 
+clickme.addEventListener("ended",function() {
+        window.location.assign("index.html")
+    });
+
+// var mySound=document.getElementById("audio1"); 
+ 
+//function playSound()
+ // { 
+ // mySound.play(); 
+//  } 
+  </script>
+  
       <!-- Set up slider in full screenwidth table -->
     <table width="100%" border="0">
       <tr>
         <td>
-          <div style="float:left;width:50%;">HARD to understand</div>
-          <div style="float:right;text-align:right;width:50%;">EASY to understand</div>
+          <div style="float:left;width:50%;">HARD to see</div>
+          <div style="float:right;text-align:right;width:50%;">EASY to see</div>
         </td>
       </tr>
       <tr>
@@ -38,8 +75,6 @@
       </tr>
     </table>
 
-    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
     <script type = "text/javascript">
 
@@ -72,34 +107,6 @@
 
     </script>
 
-    <script>
-
-// This script I thought would link the audio file to the button. It doesn't, currently.
-// Also, the script should not be in this file.
-
-        $(document).ready(function() {
-          var audioElement = document.createElement('audio');
-
-          audioElement.setAttribute('src', 'http://alt-usage-english.org/archive/arth_mb.mp3');
-          //audioElement.load()
-
-          $.get('audio', '.play');
-
-          audioElement.addEventListener("load", function() {
-              audioElement.Play();
-          }, true);
-
-          $('.play').click(function() {
-              audioElement.Play();
-          });
-
-          $('.pause').click(function() {
-              audioElement.Stop;
-          });
-
-          // when audio is done playing, display slidervals
-        });
-    </script>
 
 </body>
 </html>
