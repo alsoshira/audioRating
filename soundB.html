@@ -24,29 +24,35 @@
       <div class="row">
         <div class="col-sm-16">
 
-          <p>You will be listening to THREE sounds today.</p>
+          <p>You will be listening to THREE conversations today.</p>
 
           <p>
-            First, let's adjust your computer volume and make sure you can play the necessary sound files. Click the play button below to play some static. Adjust your computer volume until it is at a medium-comfortable level.  
+            Rate your understanding of the conversations with the slider below.
+            If you find the speech very EASY to understand, move the slider to
+            the RIGHT. If you find the speech very HARD to understand, move the
+            slider to the LEFT.
           </p>
 
         </div>
       </div>
+      <div class="row">
+        <div class="col-sm-16">
+          <!-- Select random sound file from list of 2 sounds -->
+          <!-- file[round(Math.random())];
+              if 0, play 1st file, then 2nd file
+              if 1, play 2nd file, then 1st file
+          -->
 
-
-      <!-- Select random sound file from list of 2 sounds -->
 
           <!-- allow user-initiated play -->
 
-          <!-- Method 1: HTML5 audio control -->
-		  <div>
+          <!-- Method 1: HTML5 audio control
              <audio controls>
-                <source src="media/soundcheck.mp3" type="audio/mpeg">
+                <source src="http://alt-usage-english.org/archive/arth_mb.mp3" type="audio/mpeg">
                 Your browser can't play audio.
               </audio>
-          </div>
-		  <br><br>
-		<p>Then click the  <button onclick="nextpage()" type="button">Continue</button> button.</p>
+          -->
+
           <!-- Method 2: Toolbar -->
           <!--
               <div id="toolbar" class="ui-widget-header ui-corner-all">
@@ -54,13 +60,34 @@
               </div>
           -->
 
-          <!-- Method 3: Standalone button linked to file 
+          <!-- Method 3: Standalone button linked to file -->
               <p>
                 Click the <button onclick="playSound()" type="button">Play Sound</button> button to begin.
               </p>
--->
+
 
           <!-- Set up slider in full screenwidth table -->
+          <table width="100%" border="0">
+            <tr>
+              <td>
+                <div style="float:left;width:50%;">HARD to understand</div>
+                <div style="float:right;text-align:right;width:50%;">EASY to understand</div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div id="slider"></div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div id="ratingResult"></div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -69,11 +96,38 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
+    <script type = "text/javascript">
+      $( "#slider" ).slider({
+        value: 50,
+        min: 0,
+        max: 100,
+
+        //this gets a live reading of the value and prints it on the page
+        slide: function( event, ui ) {
+          $( "#ratingResult" ).text( ui.value );
+        },
+
+        //this updates the value of your hidden field when user stops dragging
+        change: function(event, ui) {
+           $('#rateToPost').attr('value', ui.value);
+           sliderVals.push(ui.value);
+         }
+       });
+
+       var sliderVals=[];
+
+//      Check on recorded slider values-- no longer in use: 3/1/2014
+//      var dummy;
+//      dummy = setInterval(function(){greeter([sliderVals])},10000);
+//      setTimeout(function(){clearInterval(dummy)},21000);
+
+    </script>
+
 
     <audio id="audio1">
-      <source src="media/audubon_90.ogg" type="audio/ogg"> -->
-      <source src="media/audubon_90.aac" type="audio/aac">
-      <source src="media/audubon_90.mp3" type="audio/mp3">
+      <source src="media/audubon_60.ogg" type="audio/ogg"> -->
+      <source src="media/audubon_60.aac" type="audio/aac">
+      <source src="media/audubon_60.mp3" type="audio/mp3">
     You cannot participate in this experiment. Your browser is unable to play the required audio.
     </audio>
     <br>
@@ -89,16 +143,9 @@
       {
       mySound.play();
       }
-
-      function nextpage()
-      {
-        if(Math.random()<0.5) 
-          { window.location.assign("soundA.html"); }
-        else 
-          { window.location.assign("soundB.html"); }
-      }
-
     </script>
 
+
+    <!-- After both sounds are played and rated, display distraction task -->
   </body>
 </html>
