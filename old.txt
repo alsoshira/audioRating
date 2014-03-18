@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
- <!--   <link rel="stylesheet" href="/stylesheets.css"> -->
+    <link rel="stylesheet" href="/stylesheets.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -27,8 +27,7 @@
           <p>You will be listening to THREE sounds today.</p>
 
           <p>
-            First, let's adjust your computer volume and make sure you can play the necessary sound files. 
-			Click the play button below, and use the volume control to adjust the static to a medium-comfortable level.  
+            First, let's adjust your computer volume and make sure you can play the necessary sound files. Click the play button below to play some static. Adjust your computer volume until it is at a medium-comfortable level.  
           </p>
 
         </div>
@@ -40,16 +39,12 @@
           <!-- allow user-initiated play -->
 
           <!-- Method 1: HTML5 audio control -->
-		  <div>
              <audio controls>
-				<source src="media/soundcheck.ogg" type="audio/ogg">
-				<source src="media/soundcheck.aac" type="audio/aac">
                 <source src="media/soundcheck.mp3" type="audio/mpeg">
                 Your browser can't play audio.
               </audio>
-          </div>
-		  <br><br>
-		<p>Then click the  <button onclick="nextpage()" type="button">Continue</button> button.</p>
+          
+Then click the  <button onclick="nextpage()" type="button">Continue</button> button.
           <!-- Method 2: Toolbar -->
           <!--
               <div id="toolbar" class="ui-widget-header ui-corner-all">
@@ -64,7 +59,7 @@
 -->
 
           <!-- Set up slider in full screenwidth table -->
-	</div>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -73,7 +68,14 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
 
- 
+    <audio id="audio1">
+      <source src="media/audubon_90.ogg" type="audio/ogg"> -->
+      <source src="media/audubon_90.aac" type="audio/aac">
+      <source src="media/audubon_90.mp3" type="audio/mp3">
+    You cannot participate in this experiment. Your browser is unable to play the required audio.
+    </audio>
+    <br>
+
     <script>
     var mySound=document.getElementById("audio1");
 
@@ -86,27 +88,14 @@
       mySound.play();
       }
 
-    function SetCookie(cookieName,cookieValue,nDays) {
-		var today = new Date();
-		var expire = new Date();
-		if (nDays==null || nDays==0) nDays=1;
-		expire.setTime(today.getTime() + 3600000*24*nDays);
-		document.cookie = cookieName+"="+escape(cookieValue) + ";expires="+expire.toGMTString();
-	}
-
-	function nextpage()
+      function nextpage()
       {
-        if(Math.random()<0.5) {
-		  SetCookie('parm_value','A',1);
-//		  window.location.assign("soundA.html")
-		  window.location.assign('soundA.html?'+escape('A')); 
-		}
-        else {
-          SetCookie('parm_value','B',1);
-//		  window.location.assign("soundB.html") 
-		  window.location.assign('soundB.html?'+escape('B')); 
+        if(Math.random()<0.5) 
+          { window.location.assign("soundA.html"); }
+        else 
+          { window.location.assign("soundB.html"); }
       }
-	}	
+
     </script>
 
   </body>

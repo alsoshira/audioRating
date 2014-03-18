@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+
+<!-- TO DO:
+- Put nextpage(), getCondition() in javascript function library
+-->
+
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -18,13 +24,13 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-	
 
   </head>
+  
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-sm-16">
+        <div class="col-s-m16">
 
           <p>
             Rate your understanding of the sound you hear with the slider below.
@@ -59,15 +65,8 @@
                 Click the <button onClick='playSound()' type="button">Play Sound</button> button to begin.
               </p>
 			  
-   <audio id="audio1">
-      <source src="media/test.mp3" type="audio/mp3"> 
-	  <source src="media/audubon_60.ogg" type="audio/ogg"> 
-      <source src="media/audubon_60.aac" type="audio/aac">
-      <source src="media/audubon_60.mp3" type="audio/mp3">
-    You cannot participate in this experiment. Your browser is unable to play the required audio.
-    </audio>
-    <br>
-
+<p>Then click the  <button onclick="nextpage()" type="button">Continue</button> button.</p>
+       
 
           <!-- Set up slider in full screenwidth table -->
           <table width="100%" border="0">
@@ -92,12 +91,23 @@
       </div>
     </div>
 
-
+  
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+	 <audio id="audio1">
+	  <source src="media/audubon_90.ogg" type="audio/ogg">
+      <source src="media/audubon_90.aac" type="audio/aac">
+      <source src="media/audubon_90.mp3" type="audio/mp3">
+
+     You cannot participate in this experiment. Your browser is unable to play the required audio.
+    </audio>
+	
+
+    <br>
 
     <script type = "text/javascript">
       $( "#slider" ).slider({
@@ -123,19 +133,16 @@
 //      var dummy;
 //      dummy = setInterval(function(){greeter([sliderVals])},10000);
 //      setTimeout(function(){clearInterval(dummy)},21000);
+	</script>
 
-    </script>
-
-
-
- 
    <script>
     var mySound=document.getElementById("audio1");
 
     mySound.addEventListener("ended",function() {
-	        var condition=getCondition();
-			if (condition=='B') { window.location.assign('soundA.html?'+escape('B')); }
-			else { window.location.assign('distractor.html?'+escape('B')); }
+        var condition=getCondition();
+		if (condition=='A') { window.location.assign('memoryB.html?'+escape('B')); }
+		else if (condition=='B') { window.location.assign('thanks.html?'+escape('A'); } // save condition to file
+		else { alert(condition); }
         });
 
     function playSound()
@@ -164,15 +171,9 @@
 		  window.location.assign('soundB.html?'+escape('B')); 
       }
 	}	
-	
-		function getCondition() { 
-		var condition;
-		//condition=ReadCookie('parm_value');   // get condition from cookie. DISABLED.
-		condition=unescape((''+self.location.search).substring(1)); // get experimental condition from URL
-		return(condition);
-	}
-
     </script>
+
+
 
     <!-- After both sounds are played and rated, display distraction task -->
   </body>

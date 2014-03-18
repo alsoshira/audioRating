@@ -74,6 +74,27 @@
   User-initiated submit. To where? 
   On submit, redirect to memory2.html
 -->
+<br><br>
+<button id="submitA" onclick="nextPage()" type="button">Submit</button>
+
+<script type="javascript">
+
+	function nextPage(){
+        var condition=getCondition();
+		if (condition=='A') { window.location.assign('memoryB.html?'+escape('B')); }
+		else if (condition=='B') { window.location.assign('thanks.html?'+escape('A'); } // save condition to file
+		else { alert(condition); }
+	}
+
+	function getCondition() { 
+		var condition;
+		//condition=ReadCookie('parm_value');   // get condition from cookie. DISABLED.
+		condition=unescape((''+self.location.search).substring(1)); // get experimental condition from URL
+		return(condition);
+	}
+    
+</script>
+
 
 </body>
 </html>

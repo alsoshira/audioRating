@@ -9,16 +9,27 @@
 
 <div id="timer_div"></div>
 <script language="javascript" type="text/javascript">
-var countdown_length = 5;
-var interval = setInterval(function() {
-    document.getElementById('timer_div').innerHTML = --countdown_length;
+	var countdown_length = 5;
+	var interval = setInterval(function() {
+	document.getElementById('timer_div').innerHTML = --countdown_length;
 
     if (countdown_length <= 0)
     {
-        window.location.href = "memory1.html";
+        var condition=getCondition();
+		if (condition=='B') { window.location.assign('memoryB.html?'+escape('B')); }
+		else if (condition=='A') { window.location.assign('memoryA.html?'+escape('A'); }
+		else { alert(condition); }
         clearInterval(interval);
     }
 }, 1000);
+
+	function getCondition() { 
+		var condition;
+		//condition=ReadCookie('parm_value');   // get condition from cookie. DISABLED.
+		condition=unescape((''+self.location.search).substring(1)); // get experimental condition from URL
+		return(condition);
+	}
+
 </script>
 </body>
 </html> 
