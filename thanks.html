@@ -7,7 +7,17 @@
 
 <p> Thanks for participating! </p>
 
-<p> INSERT INSTRUCTIONS FOR RECEIVING PAYMENT HERE </p>
+<p> To receive payment, copy the number below and paste it on the page where you started. 
+This page should be open in another tab. </p>
+
+<p> <font color="red">You will NOT be paid unless you enter the code below in the ENTER CODE HERE box on the starting page. </font></p>
+
+<input type="text" id="code" readonly="readonly">
+
+<script>
+var randomNumber=Math.floor(100000 + Math.random()*900000)
+document.getElementById("code").value = randomNumber;
+</script>
 
 </body>
 </html>
