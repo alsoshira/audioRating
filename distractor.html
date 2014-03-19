@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<head></head>
 <body>
 
 <!--
@@ -8,17 +9,16 @@
 -->
 
 <div id="timer_div"></div>
-<script language="javascript" type="text/javascript">
+<script>
 	var countdown_length = 5;
 	var interval = setInterval(function() {
 	document.getElementById('timer_div').innerHTML = --countdown_length;
 
     if (countdown_length <= 0)
     {
-        var condition=getCondition();
-		if (condition=='B') { window.location.assign('memoryB.html?'+escape('B')); }
-		else if (condition=='A') { window.location.assign('memoryA.html?'+escape('A'); }
-		else { alert(condition); }
+	        var condition=getCondition();
+			if (condition=='A') { window.location.assign('memory1.html?'+escape('A')); }
+			else { window.location.assign('memory1.html?'+escape('B')); }
         clearInterval(interval);
     }
 }, 1000);

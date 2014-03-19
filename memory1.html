@@ -77,13 +77,12 @@
 <br><br>
 <button id="submitA" onclick="nextPage()" type="button">Submit</button>
 
-<script type="javascript">
+<script>
 
 	function nextPage(){
-        var condition=getCondition();
-		if (condition=='A') { window.location.assign('memoryB.html?'+escape('B')); }
-		else if (condition=='B') { window.location.assign('thanks.html?'+escape('A'); } // save condition to file
-		else { alert(condition); }
+	        var condition=getCondition();
+			if (condition=='A') { window.location.assign('memory2.html?'+escape('A')); }
+			else { window.location.assign('memory2.html?'+escape('B')); }
 	}
 
 	function getCondition() { 
