@@ -56,20 +56,26 @@
         max: 100,
 
         //this gets a live reading of the value and prints it on the page
-        slide: function( event, ui ) {
-          $( "#ratingResult" ).text( ui.value );
-          var sliderVals=[];
-        },
-
+   //     slide: function( event, ui ) {
+    //      $( "#ratingResult" ).text( ui.value );
+     //     var sliderVals=[];
+   //     },
+//		var sliderVal;
         //this updates the value of your hidden field when user stops dragging
-        change: function(event, ui) {
-           $('#rateToPost').attr('value', ui.value);
-           sliderVals.push(ui.value);
+ //       change: function(event, ui) {
+  //         $('#rateToPost').attr('value', ui.value);
+  //         sliderVal=ui.value;
+  //       }
+  //     });
+
+    //   var sliderVals=[];
+
+//	   var sliderVal;
+	   
+	   stop: function(event, ui) {
+           sliderVal = $(this).slider( "value" );
          }
        });
-
-       var sliderVals=[];
-
 //      Check on recorded slider values-- no longer in use: 3/1/2014
 //      var dummy;
 //      dummy = setInterval(function(){greeter([sliderVals])},10000);
@@ -79,10 +85,13 @@
 
 <script>
 
-	function nextPage(){
+	function nextPage()
+	{
+		localStorage.setItem('Memory2',sliderVal); // save slider position on submit
+	
 	        var condition=getCondition();
-			if (condition=='A') { window.location.assign('languageCheck.html?'+escape('A')); }
-			else { window.location.assign('languageCheck.html?'+escape('B')); }
+			if (condition=='A') { window.location.assign('preference.html?'+escape('A')); }
+			else { window.location.assign('preference.html?'+escape('B')); }
 	}
 
 	function getCondition() { 

@@ -76,6 +76,9 @@
       }
 	  
 	function nextPage(){
+			var transcript=document.getElementById("transcription").value;
+		  	localStorage.setItem('LanguageCheck',transcript);
+			
 	        var condition=getCondition();
 			if (condition=='A') { window.location.assign('thanks.html?'+escape('A')); }
 			else { window.location.assign('thanks.html?'+escape('B')); }

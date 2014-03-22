@@ -18,6 +18,7 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
   </head>
   <body>
     <div class="container">
@@ -50,20 +51,7 @@
           </div>
 		  <br><br>
 		<p>Then click the  <button onclick="nextpage()" type="button">Continue</button> button.</p>
-          <!-- Method 2: Toolbar -->
-          <!--
-              <div id="toolbar" class="ui-widget-header ui-corner-all">
-                <button id="play">play</button>
-              </div>
-          -->
 
-          <!-- Method 3: Standalone button linked to file 
-              <p>
-                Click the <button onclick="playSound()" type="button">Play Sound</button> button to begin.
-              </p>
--->
-
-          <!-- Set up slider in full screenwidth table -->
 	</div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -72,19 +60,46 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-
+<!-- Stolen script to check if local storage is supported
+	<script>
+	function isLocalStorageSupported {
+		try {
+			var supported = false;
+			if (window['localStorage'] !== null)
+			{
+				supported = true;
+			}
+			return supported;
+		} catch(e) {
+			return false;
+		}
+	}
+</script>
+ -->
  
-    <script>
-    var mySound=document.getElementById("audio1");
+ <!-- test submission script. not in use
+	<script>
+//	var myData;
+//	localStorage.myData = JSON.stringify({'WorkerID': 'test2'});
 
-    mySound.addEventListener("ended",function() {
-            window.location.assign("distractor.html")
-        });
+    var request = new XMLHttpRequest();
+    request.open('POST', 'https://rocky-springs-8858.herokuapp.com/entries', true);
 
-    function playSound()
-      {
-      mySound.play();
+    request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    request.setRequestHeader('X-Sheet-Key', '0AvWtGLSP8Sj8dFVHdUNYVjN0TEJKdWtiZFR2cWJnRFE');
+
+    request.onreadystatechange = function() {
+      if(request.readyState == 4 && request.status == 200) {
+      // looks like everything worked...do whatever you want
+      // here (redirect, etc)
+        console.log(request); //prints out result in your JavaScript console
       }
+    }
+    request.send(JSON.stringify(localStorage));
+  </script>
+ -->
+ 
+	<script>
 
     function SetCookie(cookieName,cookieValue,nDays) {
 		var today = new Date();
@@ -96,13 +111,19 @@
 
 	function nextpage()
       {
+	  
+	  	localStorage.setItem('WorkerID','test4');
+		localStorage.setItem('Browser','chromio');	
+	
         if(Math.random()<0.5) {
 		  SetCookie('parm_value','A',1);
+		  localStorage.setItem('Condition','A');
 //		  window.location.assign("soundA.html")
 		  window.location.assign('soundA.html?'+escape('A')); 
 		}
         else {
           SetCookie('parm_value','B',1);
+		  localStorage.setItem('Condition','A');
 //		  window.location.assign("soundB.html") 
 		  window.location.assign('soundB.html?'+escape('B')); 
       }

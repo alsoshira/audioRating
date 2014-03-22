@@ -134,6 +134,9 @@
 
  
    <script>
+   
+//   	document.write(localstorage.mydata);
+	
     var mySound=document.getElementById("audio1");
 
     mySound.addEventListener("ended",function() {
@@ -157,6 +160,9 @@
 
 	function nextpage()
       {
+	  	sliderValString=sliderVals.join(",");
+		localStorage.setItem('SliderPositionsA',sliderValString); // save slider positions on submit
+		
         if(Math.random()<0.5) {
 		  SetCookie('parm_value','A',1);
 //		  window.location.assign("soundA.html")

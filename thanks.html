@@ -15,9 +15,30 @@ That page should be open in another window or tab. </p>
 <input type="text" id="code" readonly="readonly">
 
 <script>
-var randomNumber=Math.floor(100000 + Math.random()*900000)
-document.getElementById("code").value = randomNumber;
+	var randomNumber=Math.floor(100000 + Math.random()*900000)
+	document.getElementById("code").value = randomNumber;
+ 	localStorage.setItem('ConfirmationCode',randomNumber);
 </script>
+
+  <script>
+ //   var data = localstorage.myData; // Your JSON data object goes here...
+
+    var request = new XMLHttpRequest();
+    request.open('POST', 'https://rocky-springs-8858.herokuapp.com/entries', true);
+
+    request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    request.setRequestHeader('X-Sheet-Key', '0AvWtGLSP8Sj8dFVHdUNYVjN0TEJKdWtiZFR2cWJnRFE');
+
+    request.onreadystatechange = function() {
+      if(request.readyState == 4 && request.status == 200) {
+        // looks like everything worked...do whatever you want
+        // here (redirect, etc)
+        console.log(request); //prints out result in your JavaScript console
+      }
+    }
+
+    request.send(JSON.stringify(localStorage));
+  </script>
 
 </body>
 </html>

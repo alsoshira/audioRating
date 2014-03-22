@@ -11,17 +11,48 @@
   <body>
 
 
-<p> Now think about BOTH sound. If, for your third sound, you had to listen to one of the first two again, which one would you pick? </p>
+<p> Now think about BOTH sounds. If, for your third sound, you had to listen to one of the first two again, which one would you pick? </p>
 
 <form action="">  <!-- Where should the result go? -->
-<input type="radio" name="convPreference" value="first">FIRST sound<br>
-<input type="radio" name="convPreference" value="second">SECOND sound
+<input type="radio" id="first" name="soundPreference" value="first">FIRST sound<br>
+<input type="radio" id="second" name="soundPreference" value="second">SECOND sound
 </form>
 
 <!-- 
-  User-initiated submit. To where? 
-  On submit, redirect to thanks.html
+  User-initiated submit. On submit, redirect to thanks.html
 -->
+<button id="submitB" onclick="nextPage()" type="button">Submit</button>
+<script>
+
+	function nextPage(){
+	
+			if (document.getElementById('first').checked) {
+				localStorage.setItem('Preference','first');
+			}
+			else if (document.getElementById('second').checked) {
+				localStorage.setItem('Preference','second');
+			}
+	
+	        var condition=getCondition();
+			if (condition=='A') { window.location.assign('languageCheck.html?'+escape('A')); }
+			else { window.location.assign('languageCheck.html?'+escape('B')); }
+	}
+
+	function getCondition() { 
+		var condition;
+		//condition=ReadCookie('parm_value');   // get condition from cookie. DISABLED.
+		condition=unescape((''+self.location.search).substring(1)); // get experimental condition from URL
+		return(condition);
+	}
+    
+</script>
+
+<script>
+	if (document.getElementById('r1').checked) {
+  rate_value = document.getElementById('r1').value;
+}
+	localStorage.setItem('Preference','soundPreference.value');
+</script>
 
 </body>
 </html>

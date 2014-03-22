@@ -96,7 +96,7 @@
       </div>
     </div>
 
-
+	
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -128,13 +128,18 @@
 //      dummy = setInterval(function(){greeter([sliderVals])},10000);
 //      setTimeout(function(){clearInterval(dummy)},21000);
 
-    </script>
+
 
 
 
  
-   <script>
+
+ //  	document.write(localstorage.mydata);
+	
     var mySound=document.getElementById("audio1");
+//	var myData = JSON.parse(localstorage.myData);
+//	myData.newField = "another column";
+//	localstorage.setItem(JSON.stringify(sliderVals));
 
     mySound.addEventListener("ended",function() {
 	        var condition=getCondition();
@@ -157,6 +162,9 @@
 
 	function nextpage()
       {
+	  	sliderValString=sliderVals.join(",");
+		localStorage.setItem('SliderPositionsB',sliderValString); // save slider positions on submit
+
         if(Math.random()<0.5) {
 		  SetCookie('parm_value','A',1);
 //		  window.location.assign("soundA.html")
