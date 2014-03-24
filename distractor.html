@@ -16,10 +16,9 @@
 
     if (countdown_length <= 0)
     {
-	        var condition=getCondition();
-			if (condition=='A') { window.location.assign('memory1.html?'+escape('A')); }
-			else { window.location.assign('memory1.html?'+escape('B')); }
-        clearInterval(interval);
+//	        var condition=getCondition();
+			window.location.assign('memory1.html');
+			clearInterval(interval);
     }
 }, 1000);
 

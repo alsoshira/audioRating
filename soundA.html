@@ -64,7 +64,7 @@
               </p>
 			  
    <audio id="audio1">
- <!--     <source src="media/test.mp3" type="audio/mp3"> -->
+      <source src="media/test.mp3" type="audio/mp3"> 
 	  <source src="media/speechPlusNoiseA.ogg" type="audio/ogg"> 
       <source src="media/speechPlusNoiseA.aac" type="audio/aac">
       <source src="media/speechPlusNoiseA.mp3" type="audio/mp3">
@@ -104,6 +104,8 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
     <script type = "text/javascript">
+	 var sliderVals=[];
+	 
       $( "#slider" ).slider({
         value: 50,
         min: 0,
@@ -121,66 +123,64 @@
          }
        });
 
-       var sliderVals=[];
-
 //      Check on recorded slider values-- no longer in use: 3/1/2014
 //      var dummy;
 //      dummy = setInterval(function(){greeter([sliderVals])},10000);
 //      setTimeout(function(){clearInterval(dummy)},21000);
 
-    </script>
 
-
-
- 
-   <script>
    
 //   	document.write(localstorage.mydata);
 	
     var mySound=document.getElementById("audio1");
 
     mySound.addEventListener("ended",function() {
-	        var condition=getCondition();
-			if (condition=='A') { window.location.assign('soundB.html?'+escape('A')); }
-			else { window.location.assign('distractor.html?'+escape('B')); }
-        });
+//			alert(sliderVals);
+//	        var condition=getCondition();
+//			if (condition=='A') { window.location.assign('soundB.html?'+escape('A')); }
+//			else { window.location.assign('distractor.html?'+escape('B')); }
+ 			localStorage.setItem('SliderPositionsA', sliderVals.join(",")); // save list of slider positions on submit
+			if (localStorage.getItem('Condition')=='A') { window.location.assign('soundB.html'); }
+			else { window.location.assign('distractor.html'); }  // should have error trapping for getItem('Condition')==null
+
+ });
 
     function playSound()
       {
       mySound.play();
       }
 
-    function SetCookie(cookieName,cookieValue,nDays) {
-		var today = new Date();
-		var expire = new Date();
-		if (nDays==null || nDays==0) nDays=1;
-		expire.setTime(today.getTime() + 3600000*24*nDays);
-		document.cookie = cookieName+"="+escape(cookieValue) + ";expires="+expire.toGMTString();
-	}
+//function SetCookie(cookieName,cookieValue,nDays) {
+//		var today = new Date();
+//		var expire = new Date();
+//		if (nDays==null || nDays==0) nDays=1;
+//		expire.setTime(today.getTime() + 3600000*24*nDays);
+//		document.cookie = cookieName+"="+escape(cookieValue) + ";expires="+expire.toGMTString();
+//	}
 
-	function nextpage()
-      {
-	  	sliderValString=sliderVals.join(",");
-		localStorage.setItem('SliderPositionsA',sliderValString); // save slider positions on submit
+//	function nextpage()
+ //     {
+//	  	sliderValString=sliderVals.join(",");
+//		localStorage.setItem('SliderPositionsA',sliderValString); // save slider positions on submit
 		
-        if(Math.random()<0.5) {
-		  SetCookie('parm_value','A',1);
+//        if(Math.random()<0.5) {
+//		  SetCookie('parm_value','A',1);
 //		  window.location.assign("soundA.html")
-		  window.location.assign('soundA.html?'+escape('A')); 
-		}
-        else {
-          SetCookie('parm_value','B',1);
+//		  window.location.assign('soundA.html?'+escape('A')); 
+//		}
+//        else {
+//          SetCookie('parm_value','B',1);
 //		  window.location.assign("soundB.html") 
-		  window.location.assign('soundB.html?'+escape('B')); 
-      }
-	}	
+//		  window.location.assign('soundB.html?'+escape('B')); 
+//      }
+//	}	
 	
-		function getCondition() { 
-		var condition;
+//		function getCondition() { 
+//		var condition;
 		//condition=ReadCookie('parm_value');   // get condition from cookie. DISABLED.
-		condition=unescape((''+self.location.search).substring(1)); // get experimental condition from URL
-		return(condition);
-	}
+//		condition=unescape((''+self.location.search).substring(1)); // get experimental condition from URL
+//		return(condition);
+//	}
 
     </script>
 

@@ -78,17 +78,7 @@
 	function nextPage(){
 			var transcript=document.getElementById("transcription").value;
 		  	localStorage.setItem('LanguageCheck',transcript);
-			
-	        var condition=getCondition();
-			if (condition=='A') { window.location.assign('thanks.html?'+escape('A')); }
-			else { window.location.assign('thanks.html?'+escape('B')); }
-	}
-
-	function getCondition() { 
-		var condition;
-		//condition=ReadCookie('parm_value');   // get condition from cookie. DISABLED.
-		condition=unescape((''+self.location.search).substring(1)); // get experimental condition from URL
-		return(condition);
+			window.location.assign('thanks.html');
 	}
     
 </script>

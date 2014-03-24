@@ -33,26 +33,19 @@
 				localStorage.setItem('Preference','second');
 			}
 	
-	        var condition=getCondition();
-			if (condition=='A') { window.location.assign('languageCheck.html?'+escape('A')); }
-			else { window.location.assign('languageCheck.html?'+escape('B')); }
-	}
-
-	function getCondition() { 
-		var condition;
-		//condition=ReadCookie('parm_value');   // get condition from cookie. DISABLED.
-		condition=unescape((''+self.location.search).substring(1)); // get experimental condition from URL
-		return(condition);
+			window.location.assign('languageCheck.html');
 	}
     
 </script>
 
+<!--
 <script>
 	if (document.getElementById('r1').checked) {
   rate_value = document.getElementById('r1').value;
 }
 	localStorage.setItem('Preference','soundPreference.value');
 </script>
+-->
 
 </body>
 </html>

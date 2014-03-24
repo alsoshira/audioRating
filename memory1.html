@@ -83,19 +83,9 @@
 	function nextPage(){
 	
 			localStorage.setItem('Memory1',sliderVal); // save slider position on submit
-			
-	        var condition=getCondition();
-			if (condition=='A') { window.location.assign('memory2.html?'+escape('A')); }
-			else { window.location.assign('memory2.html?'+escape('B')); }
+			window.location.assign('memory2.html'); 
 	}
 
-	function getCondition() { 
-		var condition;
-		//condition=ReadCookie('parm_value');   // get condition from cookie. DISABLED.
-		condition=unescape((''+self.location.search).substring(1)); // get experimental condition from URL
-		return(condition);
-	}
-    
 </script>
 
 

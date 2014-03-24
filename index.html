@@ -112,20 +112,20 @@
 	function nextpage()
       {
 	  
-	  	localStorage.setItem('WorkerID','test4');
-		localStorage.setItem('Browser','chromio');	
+	  	localStorage.setItem('WorkerID','test5');
+		localStorage.setItem('Browser','browser');	
 	
         if(Math.random()<0.5) {
-		  SetCookie('parm_value','A',1);
+//		  SetCookie('parm_value','A',1);
 		  localStorage.setItem('Condition','A');
 //		  window.location.assign("soundA.html")
-		  window.location.assign('soundA.html?'+escape('A')); 
+		  window.location.assign('soundA.html'); 
 		}
         else {
-          SetCookie('parm_value','B',1);
-		  localStorage.setItem('Condition','A');
+//          SetCookie('parm_value','B',1);
+		  localStorage.setItem('Condition','B');
 //		  window.location.assign("soundB.html") 
-		  window.location.assign('soundB.html?'+escape('B')); 
+		  window.location.assign('soundB.html'); 
       }
 	}	
     </script>
