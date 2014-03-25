@@ -64,7 +64,7 @@
  
 <script>
 	var mySound=document.getElementById("audio1");
-	        mySound.currentTime=0;
+//	        mySound.currentTime=0;   // attempt to allow replay. abandoned 3/25/2014.
     mySound.addEventListener("ended",function() {
 	        mySound.currentTime=0;
         });
