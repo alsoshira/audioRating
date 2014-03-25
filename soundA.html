@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="/stylesheets.css">
+    <link rel="stylesheet" href="stylesheets/app.css"
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,19 +26,22 @@
       <div class="row">
         <div class="col-sm-16">
 
-          <p>
-            Rate your understanding of the sound you hear with the slider below.
+          <h1>Instructions<div id="condition"></div></h1> 
+		  
+		  <p> Rate your understanding of the sound you hear with the slider below.
             If you find the speech very EASY to understand, move the slider to
             the RIGHT. If you find the speech very HARD to understand, move the
-            slider to the LEFT.
-          </p>
-		  
-		  <p>
+            slider to the LEFT.</p>
+
+		  <p><emph>
 		  Remember to move the slider when your understanding changes. You should be moving the slider as you listen.
-		  </p>
+		  </emph></p>
 
         </div>
       </div>
+	  
+	<br><br>
+	
       <div class="row">
         <div class="col-sm-16">
 
@@ -62,9 +65,9 @@
               <p>
                 Click the <button onClick='playSound()' type="button">Play Sound</button> button to begin.
               </p>
-			  
+<br><br><br><br><br><br>			  
    <audio id="audio1">
-      <source src="media/test.mp3" type="audio/mp3"> 
+ <!--     <source src="media/test.mp3" type="audio/mp3"> -->
 	  <source src="media/speechPlusNoiseA.ogg" type="audio/ogg"> 
       <source src="media/speechPlusNoiseA.aac" type="audio/aac">
       <source src="media/speechPlusNoiseA.mp3" type="audio/mp3">
@@ -150,6 +153,10 @@
       mySound.play();
       }
 
+	  
+	var cond=document.getElementById("condition");
+	if(localStorage.getItem('Condition')=='A') { cond.innerHTML = 'A'; }
+	else {	cond.innerHTML = localStorage.getItem('Condition'); }
 //function SetCookie(cookieName,cookieValue,nDays) {
 //		var today = new Date();
 //		var expire = new Date();

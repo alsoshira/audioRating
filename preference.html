@@ -2,7 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="/stylesheets.css">
+    <link rel="stylesheet" href="stylesheets/app.css">
     <!--
     Not sure if this is a mistake or just wasn't copied over...leaving as a reminder for now
     <link rel="stylesheet" href="/resources/demos/style.css">
@@ -10,16 +10,18 @@
   </head>
   <body>
 
-
+ <h1>Instructions</h1> 
+	
 <p> Now think about BOTH sounds. If, for your third sound, you had to listen to one of the first two again, which one would you pick? </p>
 
+<br>
 <form action="">  <!-- Where should the result go? -->
 <input type="radio" id="first" name="soundPreference" value="first">FIRST sound<br>
 <input type="radio" id="second" name="soundPreference" value="second">SECOND sound
 </form>
-
+<br>
 <!-- 
-  User-initiated submit. On submit, redirect to thanks.html
+  User-initiated submit. On submit, redirect to languageCheck.html
 -->
 <button id="submitB" onclick="nextPage()" type="button">Submit</button>
 <script>

@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head></head>
+<head>
+    <link rel="stylesheet" href="stylesheets/app.css">
+</head>
+
 <body>
 
 <!--
 	Distractor task. Right now, displays a countdown.
 	After countdown, opens memory page.
 -->
+    <h1>Instructions</h1> 
+	
+	<p>Wait for the timer to count down to 0. Then the final phase of the experiment will begin automatically.</p>
 
-<div id="timer_div"></div>
+<br><br><br><br><br>	  
+<center><div id="timer_div"></div></center>
+
 <script>
-	var countdown_length = 5;
+	var countdown_length = 60;
 	var interval = setInterval(function() {
 	document.getElementById('timer_div').innerHTML = --countdown_length;
 

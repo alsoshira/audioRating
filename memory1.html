@@ -2,7 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="/stylesheets.css">
+    <link rel="stylesheet" href="stylesheets/app.css">
     <!--
     Not sure if this is a mistake or just wasn't copied over...leaving as a reminder for now
     <link rel="stylesheet" href="/resources/demos/style.css">
@@ -10,10 +10,10 @@
   </head>
   <body>
 
+<h1>Instructions</h1>
+<p> Now think back to the FIRST sound you rated. Rate how well you understood the ENTIRE sound. Move the slider to provide your overall rating. </p>
 
-<p> Now think back to the FIRST sound you rated. Now rate how well you understood the ENTIRE sound. Move the slider to provide your overall rating. </p>
-
-
+<br><br><br><br><br>
 <!-- Set up slider in full screenwidth table -->
     <table width="100%" border="0">
       <tr>
@@ -34,9 +34,9 @@
       </tr>
     </table>
 
+
     <script src="//code.jquery.com/jquery-1.9.1.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
 
     <script type = "text/javascript">
  
@@ -50,7 +50,7 @@
         //this gets a live reading of the value and prints it on the page
         slide: function( event, ui ) {
           $( "#ratingResult" ).text( ui.value );
-          var sliderVal;
+ //         var sliderVal;
         },
 
         //this updates the value of your hidden field when user stops dragging
@@ -61,7 +61,7 @@
          }
        });
 
-       var sliderVal;
+//       var sliderVal;
 
 //      Check on recorded slider values-- no longer in use: 3/1/2014
 //      var dummy;

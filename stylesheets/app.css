@@ -1,3 +1,30 @@
+body, p, td, th {
+    font-family : helvetica,sans-serif, arial;
+    font-size : 14px;
+    color : #000000;
+}
+
+h1 {
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000080;
+}
+
+div{
+    font-family: arial, helvetica, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+}
+
+emph {
+    font-family : helvetica,sans-serif, arial;
+    font-size : 15px;
+    font-weight: bold;
+    color : #800000;
+}
+
 #toolbar {
   padding: 4px;
   display: inline-block;
