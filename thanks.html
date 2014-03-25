@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <script src="js/ua-parser.min.js"></script>
+	  
   </head>
   <body>
+
 
 
 <p> Thanks for participating! </p>
@@ -14,10 +17,26 @@ That page should be open in another window or tab. </p>
 
 <input type="text" id="code" readonly="readonly">
 
+
+<!--
+	var UAParser = require('js/ua-parser-js');
+var parser = new UAParser();
+console.log(parser.getResult());
+-->
 <script>
 	var randomNumber=Math.floor(100000 + Math.random()*900000)
 	document.getElementById("code").value = randomNumber;
  	localStorage.setItem('ConfirmationCode',randomNumber);
+
+//	require(['ua-parser'], function(UAParser) {
+    var parser = new UAParser();
+	var browser = parser.getBrowser();
+    console.log(browser);
+	localStorage.removeItem('Browser');	
+	localStorage.setItem('Browser',JSON.stringify(browser));
+//});
+
+//	var UAParser = require('ua-parser-js');
 </script>
 
   <script>
@@ -39,6 +58,28 @@ That page should be open in another window or tab. </p>
 
     request.send(JSON.stringify(localStorage));
   </script>
+  
+  
+  <!--
+   <script>
+ //   var data = {"columnName": "Column Value"}; // Your JSON data object goes here...
+    var request = new XMLHttpRequest();
+    request.open('POST', 'https://sheets.tomkersten.com/entries', true);
+
+    request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+    request.setRequestHeader('X-Sheet-Key', 'YOUR-KEY-HERE');
+
+    request.onreadystatechange = function() {
+      if(request.readyState == 4 && request.status == 200) {
+        // looks like everything worked...do whatever you want
+        // here (redirect, etc)
+        console.log(request); //prints out result in your JavaScript console
+      }
+    }
+
+    request.send(JSON.stringify(localStorage));
+  </script>
+-->
 
 </body>
 </html>
