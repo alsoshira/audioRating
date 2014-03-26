@@ -67,7 +67,7 @@
               </p>
 <br><br><br><br><br><br>			  
    <audio id="audio1">
- <!--     <source src="media/test.mp3" type="audio/mp3"> -->
+      <source src="media/test.mp3" type="audio/mp3"> 
 	  <source src="media/speechPlusNoiseA.ogg" type="audio/ogg"> 
       <source src="media/speechPlusNoiseA.aac" type="audio/aac">
       <source src="media/speechPlusNoiseA.mp3" type="audio/mp3">
@@ -145,8 +145,9 @@
 //	        var condition=getCondition();
 //			if (condition=='A') { window.location.assign('soundB.html?'+escape('A')); }
 //			else { window.location.assign('distractor.html?'+escape('B')); }
- 			localStorage.setItem('SliderPositionsA', sliderVals.join(",")); // save list of slider positions on submit
-			localStorage.setItem('TimeStampsA', timeStamps.join(",")); // save list of slider position change times on submit
+ 			localStorage.setItem('SliderPositionsA', sliderVals.join(",")); // save list of slider positions 
+			localStorage.setItem('TimeStampsA', timeStamps.join(",")); // save list of slider position change times 
+			localStorage.setItem('PlayStartTimeA', playStartTime); // save time that subject pressed start
 			if (localStorage.getItem('Condition')=='A') { window.location.assign('soundB.html'); }
 			else { window.location.assign('distractor.html'); }  // should have error trapping for getItem('Condition')==null
 
@@ -154,6 +155,7 @@
 
     function playSound()
       {
+	  playStartTime=event.timeStamp;
       mySound.play();
       }
 
