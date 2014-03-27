@@ -67,10 +67,10 @@
               </p>
 			  
    <audio id="audio1">
-      <source src="media/test.mp3" type="audio/mp3"> 
-	  <source src="media/speechPlusNoiseB.ogg" type="audio/ogg"> 
-      <source src="media/speechPlusNoiseB.aac" type="audio/aac">
-      <source src="media/speechPlusNoiseB.mp3" type="audio/mp3">
+ <!--     <source src="media/test.mp3" type="audio/mp3">  -->
+	  <source src="media/CUC.ogg" type="audio/ogg"> 
+      <source src="media/CUC.aac" type="audio/aac">
+      <source src="media/CUC.mp3" type="audio/mp3">
     You cannot participate in this experiment. Your browser is unable to play the required audio.
     </audio>
     <br>
@@ -107,7 +107,7 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
     <script type = "text/javascript">
-		 var sliderVals=[];
+		 var sliderVals=[50];
 		 var timeStamps=[];
 	
       $( "#slider" ).slider({
@@ -147,7 +147,7 @@
 //	        var condition=getCondition();
  			localStorage.setItem('SliderPositionsB', sliderVals.join(",")); // save list of slider positions
 			localStorage.setItem('TimeStampsB', timeStamps.join(",")); // save list of slider position change times 
-			localStorage.setItem('PlayStartTimeB', playStartTime); // save time that subject pressed start
+//			localStorage.setItem('PlayStartTimeB', playStartTime); // save time that subject pressed start
 			if (localStorage.getItem('Condition')=='B') { window.location.assign('soundA.html'); }
 			else { window.location.assign('distractor.html'); }  // should have error trapping for getItem('Condition')==null
         });
@@ -155,6 +155,7 @@
     function playSound()
       {
 	  playStartTime=event.timeStamp;
+	  timeStamps.push(playStartTime);
       mySound.play();
       }
 
