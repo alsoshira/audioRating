@@ -8,14 +8,47 @@
 
 	<link rel="stylesheet" href="stylesheets/app.css">
 
-  </head>
-  <body>
+    <script type="text/javascript">
+        var lastPlayable,
+            myTypes = new Array("audio/mpeg", "audio/aac", "audio/ogg"),
+            mySrc = new Array("media/soundcheck.mp3", "media/soundcheck.aac", "media/soundcheck.ogg");
+ 
+        function errorFallback() {
+            var errorLast = "An error occurred playing ";
+            var myAudio = document.getElementsByTagName('audio')[0];
+            if (myAudio.currentSrc.match(lastPlayable)) {
+                errorLast = errorLast + lastPlayable;
+                document.getElementById("audio-player").innerHTML = errorLast;
+            }
+        }
+ 
+        function checkPlaylist() {
+            var noPlayableTypes = "Your browser cannot play these sound types";
+            var myAudio = document.getElementsByTagName('audio')[0];
+            var playAny = 0;
+            for (var i = 0, len = myTypes.length; i < len; i++) {
+                var canPlay = myAudio.canPlayType(myTypes[i]);
+                if ((canPlay == "maybe") || (canPlay == "probably")) {
+                    playAny = 1;
+                    lastPlayable = mySrc[i];
+                }
+            }
+            if (playAny == 0)
+                document.getElementById("audio-player").innerHTML = noPlayableTypes;
+            else
+                myAudio.addEventListener('error', errorFallback, true);
+        }
+    </script>
+</head>
+
+<body onload="checkPlaylist()" >
+
     <div class="container">
       <div class="row">
         <div class="col-sm-16">
 
 		<h1>Welcome. Please read the instructions below carefully.</h1>
-          <p>You will be listening to THREE sounds today.</p>
+          <p>You will be listening to TWO sounds today.</p>
 <br>
           <p>
             First, let's adjust your computer volume and make sure you can play the necessary sound files. 
@@ -28,7 +61,7 @@
 <br><br>
 
           <!-- allow user-initiated play -->
-		  <div>
+		  <div id="audio-player">
              <audio controls>
 				<source src="media/soundcheck.ogg" type="audio/ogg">
 				<source src="media/soundcheck.aac" type="audio/aac">
@@ -42,16 +75,9 @@
 	</div>
 
 
+	
+	
 	<script>
-
-    function SetCookie(cookieName,cookieValue,nDays) {
-		var today = new Date();
-		var expire = new Date();
-		if (nDays==null || nDays==0) nDays=1;
-		expire.setTime(today.getTime() + 3600000*24*nDays);
-		document.cookie = cookieName+"="+escape(cookieValue) + ";expires="+expire.toGMTString();
-	}
-
 	function nextpage()
       {
 	  
