@@ -1,0 +1,53 @@
+<html>
+<head>
+  <title>bla</title>
+
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <script> 
+
+function aud_play() { 
+
+  var myAudio = document.getElementById("myAudio"); 
+
+  if (myAudio.paused) { 
+     myAudio.play(); 
+   
+     document.getElementById("b1_play").style.display="none"; 
+     document.getElementById("b2_pause").style.display="block"; 
+  } 
+
+} 
+
+function aud_pause() { 
+
+  var myAudio = document.getElementById("myAudio"); 
+
+  if (!myAudio.paused) { 
+      myAudio.pause(); 
+
+      document.getElementById("b1_play").style.display="block"; 
+      document.getElementById("b2_pause").style.display="none"; 
+
+   } 
+} 
+
+</script>
+
+</head>
+
+
+<body>
+
+<audio id="myAudio" 
+   <source src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.mp4"  type='audio/mp4'> 
+   <source src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga" type='audio/ogg; codecs=vorbis'> 
+   Your user agent does not support the HTML5 Audio element. 
+</audio> 
+
+<button id="b1_play" name="play" type="button" onclick="aud_play()"><i class="fa fa-play"></i></button> 
+<button id="b2_pause" name="pause" type="button" onclick="aud_pause()" style="display:none" ><i class="fa fa-pause"></i></button> 
+
+</body>
+
+</html>
