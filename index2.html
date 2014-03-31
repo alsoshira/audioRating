@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Audio Rating</title>
+
+	<link rel="stylesheet" href="stylesheets/app.css">
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-16">
+
+		<h1>Welcome. Please read the instructions below carefully.</h1>
+          <p>You will be listening to THREE sounds today.</p>
+<br>
+          <p>
+            First, let's adjust your computer volume and make sure you can play the necessary sound files. 
+			Click the play button below, and use the volume control to adjust the static to a medium-comfortable level.  
+          </p>
+
+        </div>
+      </div>
+
+<br><br>
+
+          <!-- allow user-initiated play -->
+		  <div>
+             <audio controls>
+				<source src="media/soundcheck.ogg" type="audio/ogg">
+				<source src="media/soundcheck.aac" type="audio/aac">
+                <source src="media/soundcheck.mp3" type="audio/mpeg">
+                Your browser can't play audio.
+              </audio>
+          </div>
+		  <br><br>
+		<p>Then click the  <button onclick="nextpage()" type="button">Continue</button> button.</p>
+
+	</div>
+
+
+	<script>
+
+    function SetCookie(cookieName,cookieValue,nDays) {
+		var today = new Date();
+		var expire = new Date();
+		if (nDays==null || nDays==0) nDays=1;
+		expire.setTime(today.getTime() + 3600000*24*nDays);
+		document.cookie = cookieName+"="+escape(cookieValue) + ";expires="+expire.toGMTString();
+	}
+
+	function nextpage()
+      {
+	  
+	  	localStorage.setItem('WorkerID','test5');
+	
+        if(Math.random()<0.5) {
+		  localStorage.setItem('Condition','A');
+		  window.location.assign('soundA.html'); 
+		}
+        else {
+		  localStorage.setItem('Condition','B');
+		  window.location.assign('soundB.html'); 
+      }
+	}	
+    </script>
+
+  </body>
+</html>
