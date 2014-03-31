@@ -6,27 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Audio Rating</title>
 
-    <!-- Bootstrap -->
- <!--   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css"> -->
-<!--    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
-<!--    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"> -->
 	<link rel="stylesheet" href="stylesheets/app.css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <script type="text/javascript">
+        var lastPlayable,
+            myTypes = new Array("audio/mpeg", "audio/aac", "audio/ogg"),
+            mySrc = new Array("media/soundcheck.mp3", "media/soundcheck.aac", "media/soundcheck.ogg");
+ 
+        function errorFallback() {
+            var errorLast = "An error occurred playing ";
+            var myAudio = document.getElementsByTagName('audio')[0];
+            if (myAudio.currentSrc.match(lastPlayable)) {
+                errorLast = errorLast + lastPlayable;
+                document.getElementById("audio-player").innerHTML = errorLast;
+            }
+        }
+ 
+        function checkPlaylist() {
+            var noPlayableTypes = "Your browser cannot play these sound types";
+            var myAudio = document.getElementsByTagName('audio')[0];
+            var playAny = 0;
+            for (var i = 0, len = myTypes.length; i < len; i++) {
+                var canPlay = myAudio.canPlayType(myTypes[i]);
+                if ((canPlay == "maybe") || (canPlay == "probably")) {
+                    playAny = 1;
+                    lastPlayable = mySrc[i];
+                }
+            }
+            if (playAny == 0)
+                document.getElementById("audio-player").innerHTML = noPlayableTypes;
+            else
+                myAudio.addEventListener('error', errorFallback, true);
+        }
+    </script>
+</head>
 
-  </head>
-  <body>
+<body onload="checkPlaylist()" >
+
     <div class="container">
       <div class="row">
         <div class="col-sm-16">
 
 		<h1>Welcome. Please read the instructions below carefully.</h1>
-          <p>You will be listening to THREE sounds today.</p>
+          <p>You will be listening to TWO sounds today.</p>
 <br>
           <p>
             First, let's adjust your computer volume and make sure you can play the necessary sound files. 
@@ -37,12 +59,9 @@
       </div>
 
 <br><br>
-      <!-- Select random sound file from list of 2 sounds -->
 
           <!-- allow user-initiated play -->
-
-          <!-- Method 1: HTML5 audio control -->
-		  <div>
+		  <div id="audio-player">
              <audio controls>
 				<source src="media/soundcheck.ogg" type="audio/ogg">
 				<source src="media/soundcheck.aac" type="audio/aac">
@@ -56,78 +75,20 @@
 	</div>
 
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
- <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
- <!--   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script> -->
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
- <!--   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script> -->
-
-
-<!-- Stolen script to check if local storage is supported
+	
+	
 	<script>
-	function isLocalStorageSupported {
-		try {
-			var supported = false;
-			if (window['localStorage'] !== null)
-			{
-				supported = true;
-			}
-			return supported;
-		} catch(e) {
-			return false;
-		}
-	}
-</script>
- -->
- 
- <!-- test submission script. not in use
-	<script>
-//	var myData;
-//	localStorage.myData = JSON.stringify({'WorkerID': 'test2'});
-
-    var request = new XMLHttpRequest();
-    request.open('POST', 'https://rocky-springs-8858.herokuapp.com/entries', true);
-
-    request.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-    request.setRequestHeader('X-Sheet-Key', '0AvWtGLSP8Sj8dFVHdUNYVjN0TEJKdWtiZFR2cWJnRFE');
-
-    request.onreadystatechange = function() {
-      if(request.readyState == 4 && request.status == 200) {
-      // looks like everything worked...do whatever you want
-      // here (redirect, etc)
-        console.log(request); //prints out result in your JavaScript console
-      }
-    }
-    request.send(JSON.stringify(localStorage));
-  </script>
- -->
- 
-	<script>
-
-    function SetCookie(cookieName,cookieValue,nDays) {
-		var today = new Date();
-		var expire = new Date();
-		if (nDays==null || nDays==0) nDays=1;
-		expire.setTime(today.getTime() + 3600000*24*nDays);
-		document.cookie = cookieName+"="+escape(cookieValue) + ";expires="+expire.toGMTString();
-	}
-
 	function nextpage()
       {
 	  
 	  	localStorage.setItem('WorkerID','test5');
-//		localStorage.setItem('Browser','browser');	
 	
         if(Math.random()<0.5) {
-//		  SetCookie('parm_value','A',1);
 		  localStorage.setItem('Condition','A');
-//		  window.location.assign("soundA.html")
 		  window.location.assign('soundA.html'); 
 		}
         else {
-//          SetCookie('parm_value','B',1);
 		  localStorage.setItem('Condition','B');
-//		  window.location.assign("soundB.html") 
 		  window.location.assign('soundB.html'); 
       }
 	}	
