@@ -107,9 +107,12 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
     <script type = "text/javascript">
-		 var sliderVals=[50];
-		 var timeStamps=[];
-	
+	 var sliderChangeVals=[50];
+	 var sliderVals=[50];
+	 var timeStamps=[];
+	 var timeStamps=[];
+	 var timeStampsSlide=[];
+	 
       $( "#slider" ).slider({
         value: 50,
         min: 0,
@@ -118,13 +121,16 @@
         //this gets a live reading of the value and prints it on the page
         slide: function( event, ui ) {
           $( "#ratingResult" ).text( ui.value );
+		  timeOfSlide=event.timeStamp;
+		  sliderVals.push(ui.value);
+		  timeStampsSlide.push(timeOfSlide);
         },
 
         //this updates the value of your hidden field when user stops dragging
         change: function(event, ui) {
            $('#rateToPost').attr('value', ui.value);
 		   timeOfChange=event.timeStamp;
-           sliderVals.push(ui.value);
+           sliderChangeVals.push(ui.value);
 		   timeStamps.push(timeOfChange);
          }
        });
@@ -145,9 +151,11 @@
 
     mySound.addEventListener("ended",function() {
 //	        var condition=getCondition();
- 			localStorage.setItem('SliderPositionsB', sliderVals.join(",")); // save list of slider positions
+ 			localStorage.setItem('SliderChangesB', sliderChangeVals.join(",")); // save list of slider changes  
+			localStorage.setItem('SliderPositionsB', sliderVals.join(",")); // save list of slider positions 
 			localStorage.setItem('TimeStampsB', timeStamps.join(",")); // save list of slider position change times 
-//			localStorage.setItem('PlayStartTimeB', playStartTime); // save time that subject pressed start
+			localStorage.setItem('TimeStampsSlideB', timeStampsSlide.join(",")); // save list of slider position change times 
+			//			localStorage.setItem('PlayStartTimeB', playStartTime); // save time that subject pressed start
 			if (localStorage.getItem('Condition')=='B') { window.location.assign('soundA.html'); }
 			else { window.location.assign('distractor.html'); }  // should have error trapping for getItem('Condition')==null
         });

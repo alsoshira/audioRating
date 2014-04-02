@@ -107,8 +107,11 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
     <script type = "text/javascript">
+	 var sliderChangeVals=[50];
 	 var sliderVals=[50];
 	 var timeStamps=[];
+	 var timeStamps=[];
+	 var timeStampsSlide=[];
 	 
       $( "#slider" ).slider({
         value: 50,
@@ -118,13 +121,16 @@
         //this gets a live reading of the value and prints it on the page
         slide: function( event, ui ) {
           $( "#ratingResult" ).text( ui.value );
+		  timeOfSlide=event.timeStamp;
+		  sliderVals.push(ui.value);
+		  timeStampsSlide.push(timeOfSlide);
         },
 
         //this updates the value of your hidden field when user stops dragging
         change: function(event, ui) {
            $('#rateToPost').attr('value', ui.value);
 		   timeOfChange=event.timeStamp;
-           sliderVals.push(ui.value);
+           sliderChangeVals.push(ui.value);
 		   timeStamps.push(timeOfChange);
          }
        });
@@ -141,12 +147,14 @@
     var mySound=document.getElementById("audio1");
 
     mySound.addEventListener("ended",function() {
-//			alert(sliderVals);
+//			alert(sliderChangeVals);
 //	        var condition=getCondition();
 //			if (condition=='A') { window.location.assign('soundB.html?'+escape('A')); }
 //			else { window.location.assign('distractor.html?'+escape('B')); }
- 			localStorage.setItem('SliderPositionsA', sliderVals.join(",")); // save list of slider positions 
+ 			localStorage.setItem('SliderChangesA', sliderChangeVals.join(",")); // save list of slider changes  
+			localStorage.setItem('SliderPositionsA', sliderVals.join(",")); // save list of slider positions 
 			localStorage.setItem('TimeStampsA', timeStamps.join(",")); // save list of slider position change times 
+			localStorage.setItem('TimeStampsSlideA', timeStampsSlide.join(",")); // save list of slider position change times 
 //			localStorage.setItem('PlayStartTimeA', playStartTime); // save time that subject pressed start
 			if (localStorage.getItem('Condition')=='A') { window.location.assign('soundB.html'); }
 			else { window.location.assign('distractor.html'); }  // should have error trapping for getItem('Condition')==null
