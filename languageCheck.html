@@ -92,9 +92,10 @@
 	function nextPage(){
 			var q1=document.getElementById("numismatics").value;
 			var q2=document.getElementById("currency").value;
-			var currency=document.getElementById("numismatics").value;
-		  	localStorage.setItem('Numismatics',numismatics);
-			localStorage.setItem('CurrencyType',currency);
+			var q3=document.getElementById("magazine").value;
+		  	localStorage.setItem('Numismatics',q1);
+			localStorage.setItem('CurrencyType',q2);
+			localStorage.setItem('MagazineTopic',q3);
 			window.location.assign('thanks.html');
 	}
     
