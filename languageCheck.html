@@ -25,13 +25,25 @@
         <div class="col-sm-16">
 
 		<h1>Instructions</h1>
-          <p>This last test measures your understanding of spoken English. </p>
+ <!--         <p>This last test measures your understanding of spoken English. </p>
 		  
 		  <ol>
 		  <li>When you're ready, click the play button below to hear a sentence. YOU WILL ONLY HEAR THE SENTENCE ONCE. </li>
 		  <li>Write that sentence in the box below.</li>
 		  <li><emph> You must get at least half of words correct in order to be paid. </emph></li>
 		  <li>Click continue.</li>
+		  </ol>
+-->
+          <p>Your last task is to answer the following questions about the passages you just heard. <emph> You must get at least two questions correct in order to be paid. </emph></p>
+		  <hr>
+		  
+		  <ol>
+		    <li> According to the speaker, what is numismatics the study of?<br>
+		      <input type="text" id="numismatics" size=60><br><br></li>
+		    <li> Name one of the "odd and curious" things that the speaker claimed were once used for currency. <br>
+		      <input type="text" id="currency" size=60><br><br></li>
+		    <li> What was the subject of the magazine that the speaker was reading from?<br>
+		      <input type="text" id="magazine" size=60><br><br></li>
 		  </ol>
 
         </div>
@@ -40,6 +52,7 @@
 
 
           <!-- allow user-initiated play with HTML5 audio control -->
+<!--
 		  <div>
              <audio controls>
 				<source src="media/languageCheck.ogg" type="audio/ogg">
@@ -51,7 +64,8 @@
 		  <br><br>
 		  	  
 		  <input type="text" id="transcription" size=30>
-		  
+-->
+
 		<br><br>
 		<p><button onclick="nextPage()" type="button">Continue</button></p>
  
@@ -64,20 +78,23 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
  
 <script>
-	var mySound=document.getElementById("audio1");
+//	var mySound=document.getElementById("audio1");
 //	        mySound.currentTime=0;   // attempt to allow replay. abandoned 3/25/2014.
-    mySound.addEventListener("ended",function() {
-	        mySound.currentTime=0;
-        });
+ //   mySound.addEventListener("ended",function() {
+//	        mySound.currentTime=0;
+ //       });
 
-    function playSound()
-      {
-      mySound.play();
-      }
+  //  function playSound()
+  //    {
+  //    mySound.play();
+  //    }
 	  
 	function nextPage(){
-			var transcript=document.getElementById("transcription").value;
-		  	localStorage.setItem('LanguageCheck',transcript);
+			var q1=document.getElementById("numismatics").value;
+			var q2=document.getElementById("currency").value;
+			var currency=document.getElementById("numismatics").value;
+		  	localStorage.setItem('Numismatics',numismatics);
+			localStorage.setItem('CurrencyType',currency);
 			window.location.assign('thanks.html');
 	}
     
