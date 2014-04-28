@@ -170,11 +170,17 @@
 			if (localStorage.getItem('Condition')=='B') { window.location.assign('soundA.html'); }
 			else { window.location.assign('distractor.html'); }  // should have error trapping for getItem('Condition')==null
         });
+		
+	$("button").click(function(event){
+//		playStartTime=$("span").text(event.timeStamp);
+		playStartTime=event.timeStamp;
+		timeStamps.push(playStartTime);
+	}); 
 
     function playSound()
       {
-	  playStartTime=event.timeStamp;
-	  timeStamps.push(playStartTime);
+//	  playStartTime=event.timeStamp;
+//	  timeStamps.push(playStartTime);
       mySound.play();
       }
 

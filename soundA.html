@@ -75,7 +75,7 @@
 
           <!-- Method 3: Standalone button linked to file -->
               <p>
-                Click the <button onClick='playSound()' type="button">Play Sound</button> button to begin.
+                Click the <button onClick='playSound()' type="button" id="button">Play Sound</button> button to begin.
               </p>
 <br><br><br><br><br><br>			  
    <audio id="audio1">
@@ -172,11 +172,16 @@
 			else { window.location.assign('distractor.html'); }  // should have error trapping for getItem('Condition')==null
 
  });
-
+	$("button").click(function(event){
+//		playStartTime=$("span").text(event.timeStamp);
+		playStartTime=event.timeStamp;
+		timeStamps.push(playStartTime);
+	}); 
+	
     function playSound()
       {
-	  playStartTime=event.timeStamp;
-	  timeStamps.push(playStartTime);
+//	  playStartTime=event.timeStamp;
+//	  timeStamps.push(playStartTime);
       mySound.play();
       }
 
